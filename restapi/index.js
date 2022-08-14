@@ -25,12 +25,10 @@ app.get('/', (req, res) =>{
 }); 
 
 
-//creates an endpoint for the route `/api/books` that prints all the books 
+// //creates an endpoint for the route `/api/books` that prints all the books 
 app.get("/api/books", (req, res) => {
     res.json(books);
   });
-
-
 
 
 app.listen(PORT, () => console.log(`Hola! Server running on Port http://localhost:${PORT}`));
