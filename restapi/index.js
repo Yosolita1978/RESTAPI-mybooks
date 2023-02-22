@@ -27,16 +27,29 @@ app.use(express.static('client'));
 
 // //creates an endpoint for the route `/api/books` that prints all the books 
 app.get("/api/books", (req, res) => {
-    res.json(books);
-  });
+  res.json(books);
+});
+
+// //creates an endpoint for the route `/api/books/:bookID` that prints the book with the specific ISBN number as their ID 
+app.get('/api/books/:bookID', cors(), async (req, res) => {
+  //Is the request
+  let requestedBook = req.params.bookID;
+  //console.log(requestedBook);
+  //Is the response
+  for (let book of books) {
+    if (book.isbn === requestedBook) {
+      res.json(book);
+    }
+  }
+})
 
 //creates a route `/` that is the homepage
-app.get('/', (req, res) =>{
+app.get('/', (req, res) => {
   //testing that was working
   //res.send("Hello Techtonica, welcome to Cristina's Library");
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
   //this send the response to open the index.html in that directory
-}); 
+});
 
 
 app.listen(PORT, () => console.log(`Hola! Server running on Port http://localhost:${PORT}`));
